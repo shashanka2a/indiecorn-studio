@@ -122,34 +122,6 @@ const projects: Project[] = [
     }
   },
   {
-    id: 19,
-    name: "Liftoff",
-    url: "https://liftoff.design/",
-    status: "Live",
-    category: "Agency",
-    tags: ["Design", "Creative", "Web"],
-    shortDesc:
-      "Premium design studio engineering digital ecosystems that propel brands.",
-    stats: { style: "Brutalist", tech: "WebGL", type: "Agency" },
-    sections: {
-      design:
-        "High-contrast neon yellow (#CCFF00) on black. Brutalist-meets-futuristic 'OS' interface style with command-line aesthetics.",
-      valueProp:
-        "Engineers digital ecosystems with a focus on WebGL and creative coding. Merges aesthetic excellence with engineering rigor.",
-      audience: "High-ambition brands, Web3, Fintech, and B2B SaaS.",
-      features: [
-        "Design Systems",
-        "WebGL & Creative Coding",
-        "Brand Identity",
-        "End-to-end Development"
-      ],
-      traction:
-        "Established boutique studio. 3 featured portfolio projects dated 2025. Active client work.",
-      insights:
-        "Differentiates through tech-forward branding that mirrors developer culture. Occupies the niche between standard web agencies and specialized interactive studios."
-    }
-  },
-  {
     id: 2,
     name: "MenuOS",
     url: "https://www.menuos.app/",
@@ -201,62 +173,6 @@ const projects: Project[] = [
         "Waitlist active. Pricing structure established ($29/mo premium).",
       insights:
         "The '10 years' lifecycle tracking example quantifies value beautifully. Sinking fund features move this from a simple logbook app to a financial planning tool."
-    }
-  },
-  {
-    id: 17,
-    name: "DistroHQ",
-    url: "https://www.distrohq.xyz/",
-    status: "Live",
-    category: "Agency",
-    tags: ["Content", "Production", "SaaS"],
-    shortDesc:
-      "Headquarters for producing, packaging, and distributing high-performance content.",
-    stats: { rev: "$3k+/mo", clients: "Series-B+", type: "Service" },
-    sections: {
-      design:
-        "Minimalist, monochromatic aesthetic. Clean typography (Segoe UI) with repeating text patterns creates visual rhythm. Professional B2B look.",
-      valueProp:
-        "Solves content bottlenecks by offering full-stack production (Strategy + Production + Distribution). Bridges creator tools with B2B SaaS demands.",
-      audience: "Founders, SaaS Executives, Series-B+ companies.",
-      features: [
-        "Short-form video production",
-        "LinkedIn carousel creation",
-        "Product demo cinematography",
-        "Multi-channel distribution"
-      ],
-      traction:
-        "Active case studies (Apex +45k followers, Linear 2.5M views). Established pricing tiers ($3k-$6.5k/mo).",
-      insights:
-        "Positions as a growth partner, not just an editing service. The tiered subscription model for high-end content production creates predictable recurring revenue in a typically volatile agency model."
-    }
-  },
-  {
-    id: 18,
-    name: "LetsVibe",
-    url: "https://letsvibe.dev/",
-    status: "Live",
-    category: "Education",
-    tags: ["Education", "AI", "DevTools"],
-    shortDesc:
-      "Learn practical AI-native coding using Gemini 3.0, Google AI Studio, and Supabase.",
-    stats: { students: "2.4k+", stack: "Gemini", model: "Lifetime" },
-    sections: {
-      design:
-        "Dark-first with neon accents (Purple/Cyan). JetBrains Mono font usage and interactive canvas simulators create a 'hacker' atmosphere.",
-      valueProp:
-        "Forget syntax memorization. Learn to conduct the symphony of AI models. Positions developers as 'conductors' rather than writers.",
-      audience: "Aspiring developers, SaaS founders, Junior engineers.",
-      features: [
-        "Reasoning Models training",
-        "Multimodal agent building",
-        "Supabase backend integration",
-        "Cohort-based learning"
-      ],
-      traction:
-        "2,400+ builders enrolled. Active 2025 Cohort. Functional platform.",
-      insights:
-        "Directly challenges traditional bootcamps by skipping syntax fundamentals to focus on AI orchestration. The 'Lifetime Access' model is a smart cash-flow play for education products."
     }
   },
   {
