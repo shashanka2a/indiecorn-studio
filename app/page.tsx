@@ -1,20 +1,29 @@
 'use client';
 
 import React, { useMemo, useState } from "react";
+import type { LucideIcon } from "lucide-react";
 import {
   Activity,
   ArrowUpRight,
   BarChart3,
   Clock,
+  Cpu,
   ExternalLink,
   Filter,
+  GraduationCap,
   Globe,
   Layers,
   Layout,
   Maximize2,
+  Network,
+  Radar,
   Search,
   Sun,
   Moon,
+  Briefcase,
+  CreditCard,
+  Server,
+  ShoppingCart,
   ShieldCheck,
   Sparkles,
   Target,
@@ -23,7 +32,6 @@ import {
   X,
   Zap
 } from "lucide-react";
-import { Icon } from "@iconify/react";
 
 type ProjectStatus = "Live" | "Coming Soon";
 
@@ -244,16 +252,25 @@ const projects: Project[] = [
     status: "Coming Soon",
     category: "AI Tools",
     tags: ["AI", "Fashion", "Design"],
-    shortDesc: "AI-powered apparel creation and design studio.",
+    shortDesc:
+      "AI apparel studio that turns prompts into streetwear-ready patterns and mockups in minutes.",
     stats: { tech: "Next.js", type: "Creative", domain: ".studio" },
     sections: {
-      design: "Limited visibility. Uses Next.js framework.",
-      valueProp: "AI apparel creation and designs.",
-      audience: "Fashion designers, streetwear enthusiasts.",
-      features: ["AI Design Generation", "Apparel specific tooling"],
-      traction: "Development stage. Modern stack used.",
+      design:
+        "Dark, fashion-forward aesthetic with icon-led navigation; hero showcases garment mockups. Uses glassy cards, bold type, and CTA-driven layout.",
+      valueProp:
+        "Reduce concept-to-sample time: prompt garments, get editable patterns and renders without a full design team.",
+      audience: "Streetwear founders, independent designers, print-on-demand sellers.",
+      features: [
+        "Prompt-to-design generation with edit-friendly layers",
+        "Apparel-specific pattern exports and tech-pack basics",
+        "Lookbook-ready mockups for fast merchandising",
+        "Next.js stack for fast previews and sharing"
+      ],
+      traction:
+        "Active build; showcasing brand icon and stack signals production intent.",
       insights:
-        "Positioning at the intersection of Generative AI and Streetwear/Custom fashion. The .studio domain implies a creative suite rather than just a store."
+        "AI + apparel niche keeps focus on silhouette/pattern quality over generic image gen; .studio framing positions it as a creative suite, not just a storefront."
     }
   },
   {
@@ -686,8 +703,14 @@ const StatusBadge = ({ status }: { status: ProjectStatus }) => {
   );
 };
 
-const CategoryBadge = ({ tag }: { tag: string }) => (
-  <span className="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium bg-black/20 border border-zinc-700 text-zinc-200 mr-1 mb-1 backdrop-blur-sm">
+const CategoryBadge = ({ tag, isLight }: { tag: string; isLight: boolean }) => (
+  <span
+    className={`inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium mr-1 mb-1 backdrop-blur-sm border ${
+      isLight
+        ? "bg-slate-100 text-slate-700 border-slate-200"
+        : "bg-black/20 text-zinc-200 border-zinc-700"
+    }`}
+  >
     {tag}
   </span>
 );
@@ -697,18 +720,20 @@ const StatCard = ({
   value,
   icon: Icon,
   colorClass,
-  borderColor
+  borderColor,
+  surfaceClass
 }: {
   label: string;
   value: number | string;
   icon: typeof Layout;
   colorClass?: string;
   borderColor?: string;
+  surfaceClass?: string;
 }) => (
   <div
-    className={`bg-zinc-900/50 rounded-xl p-6 border ${
+    className={`${surfaceClass || "bg-zinc-900/50"} rounded-xl p-6 border ${
       borderColor || "border-zinc-800"
-    } hover:border-zinc-700 transition-all shadow-sm hover:shadow-md hover:bg-zinc-900 group`}
+    } transition-all shadow-sm hover:shadow-md group`}
   >
     <div className="flex justify-between items-start">
       <div>
@@ -966,17 +991,28 @@ export default function IndiecornPortfolio() {
     ? "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50"
     : "bg-[#0f1117] border-zinc-800 hover:border-emerald-400/30 hover:bg-[#131726]";
 
-  const iconForProject = (project: Project) => {
-    if (project.name === "WorkfloAI") return "solar:cpu-bolt-bold-duotone";
-    if (project.category === "Marketplace") return "solar:cart-3-bold-duotone";
-    if (project.category === "AI Tools") return "solar:sparkles-bold-duotone";
-    if (project.category === "AI Agents") return "solar:cpu-bolt-bold-duotone";
-    if (project.category === "SaaS") return "solar:server-path-bold-duotone";
-    if (project.category === "Agency") return "solar:briefcase-bold-duotone";
-    if (project.category === "Education") return "solar:graduation-cap-2-bold-duotone";
-    if (project.category === "Fintech") return "solar:card-bold-duotone";
-    if (project.category === "Web3") return "solar:chain-bold-duotone";
-    return "solar:radar-2-bold-duotone";
+  const iconForProject = (project: Project): LucideIcon => {
+    if (project.name === "WorkfloAI") return Cpu;
+    switch (project.category) {
+      case "Marketplace":
+        return ShoppingCart;
+      case "AI Tools":
+        return Sparkles;
+      case "AI Agents":
+        return Cpu;
+      case "SaaS":
+        return Server;
+      case "Agency":
+        return Briefcase;
+      case "Education":
+        return GraduationCap;
+      case "Fintech":
+        return CreditCard;
+      case "Web3":
+        return Network;
+      default:
+        return Radar;
+    }
   };
 
   const now = useMemo(
@@ -1066,13 +1102,21 @@ export default function IndiecornPortfolio() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <StatCard label="Total Projects" value={stats.total} icon={Layers} borderColor={isLight ? "border-slate-200" : undefined} colorClass={isLight ? "text-slate-900" : undefined} />
+          <StatCard
+            label="Total Projects"
+            value={stats.total}
+            icon={Layers}
+            surfaceClass={statCardSurface}
+            borderColor={isLight ? "border-slate-200" : undefined}
+            colorClass={isLight ? "text-slate-900" : undefined}
+          />
           <StatCard
             label="Live & Revenue"
             value={stats.live}
             icon={Activity}
             colorClass={isLight ? "text-emerald-600" : "text-emerald-400"}
             borderColor={isLight ? "border-emerald-100" : "border-emerald-500/10"}
+            surfaceClass={statCardSurface}
           />
           <StatCard
             label="Pipeline"
@@ -1080,6 +1124,7 @@ export default function IndiecornPortfolio() {
             icon={Clock}
             colorClass={isLight ? "text-amber-600" : "text-amber-400"}
             borderColor={isLight ? "border-amber-100" : "border-amber-500/10"}
+            surfaceClass={statCardSurface}
           />
         </div>
 
@@ -1158,7 +1203,10 @@ export default function IndiecornPortfolio() {
                           : "bg-[#111623] text-zinc-400 border-zinc-700"
                     }`}
                   >
-                    <Icon icon={iconForProject(project)} className="w-6 h-6" />
+                    {(() => {
+                      const ProjectIcon = iconForProject(project);
+                      return <ProjectIcon className="w-6 h-6" />;
+                    })()}
                   </div>
                   <StatusBadge status={project.status} />
                 </div>
@@ -1187,12 +1235,18 @@ export default function IndiecornPortfolio() {
 
                 <div className="flex flex-wrap gap-1.5 mt-auto">
                   {project.tags.slice(0, 3).map((tag) => (
-                    <CategoryBadge key={tag} tag={tag} />
+                    <CategoryBadge key={tag} tag={tag} isLight={isLight} />
                   ))}
                   {project.tags.length > 3 && (
-                    <span className="text-[10px] text-zinc-600 px-1.5 py-1 rounded bg-zinc-900 border border-zinc-800 self-center">
-                      +{project.tags.length - 3}
-                    </span>
+                <span
+                  className={`text-[10px] px-1.5 py-1 rounded self-center border ${
+                    isLight
+                      ? "text-slate-500 bg-slate-100 border-slate-200"
+                      : "text-zinc-600 bg-zinc-900 border-zinc-800"
+                  }`}
+                >
+                  +{project.tags.length - 3}
+                </span>
                   )}
                 </div>
               </div>
@@ -1234,11 +1288,15 @@ export default function IndiecornPortfolio() {
             }`}
           >
             <div>
-              <h2 className="text-xl font-bold text-white flex items-center tracking-tight">
+              <h2
+                className={`text-xl font-bold flex items-center tracking-tight ${
+                  isLight ? "text-slate-900" : "text-white"
+                }`}
+              >
                 <BarChart3 className="w-5 h-5 mr-3 text-emerald-500" />
                 Portfolio Intelligence
               </h2>
-              <p className="text-zinc-500 text-sm mt-1">
+              <p className={`text-sm mt-1 ${isLight ? "text-slate-600" : "text-zinc-500"}`}>
                 Aggregated performance & strategic insights.
               </p>
             </div>
