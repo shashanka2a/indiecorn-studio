@@ -122,32 +122,31 @@ const projects: Project[] = [
     }
   },
   {
-    id: 20,
-    name: "WorkfloAI",
-    url: "https://www.workfloai.com/",
+    id: 19,
+    name: "Liftoff",
+    url: "https://liftoff.design/",
     status: "Live",
-    category: "AI Agents",
-    tags: ["AI Agents", "Automation", "SaaS", "No-Code"],
-    shortDesc: "Digital workforce of pre-built agents for Built World operators.",
-    stats: { leads: "2.3k handled", docs: "847 verified", upsell: "$12k" },
+    category: "Agency",
+    tags: ["Design", "Creative", "Web"],
+    shortDesc:
+      "Premium design studio engineering digital ecosystems that propel brands.",
+    stats: { style: "Brutalist", tech: "WebGL", type: "Agency" },
     sections: {
       design:
-        "Dark-mode with slate backgrounds and amber/gold accents. Gradient fixed nav, animated floating cards, three-column grids, and polished hover states create a premium SaaS feel. Amber rounded-rectangle icon with 3D box shape anchors the brand.",
+        "High-contrast neon yellow (#CCFF00) on black. Brutalist-meets-futuristic 'OS' interface style with command-line aesthetics.",
       valueProp:
-        "\"Your Digital Workforce is Ready to Clock In\"—no-config agents deployed instantly; solves non-technical gaps without webhooks or canvases.",
-      audience:
-        "Non-technical operators in construction, real estate, and hospitality who want outcomes (time saved, revenue) not tooling complexity.",
+        "Engineers digital ecosystems with a focus on WebGL and creative coding. Merges aesthetic excellence with engineering rigor.",
+      audience: "High-ambition brands, Web3, Fintech, and B2B SaaS.",
       features: [
-        "Speed-to-Lead agent: <30s Zillow replies, NL chat, lead scoring, calendar booking, 2.3k leads handled",
-        "Digital Foreman agent: compliance doc chase, vision AI for PDFs/dates, auto filing, 847 docs verified",
-        "Concierge agent: WhatsApp upsell, instant FAQ, review sentiment, multilingual, $12k upsold",
-        "4-step Hire flow (Browse → Configure → Hire → Monitor) with live dashboards",
-        "Integrations for Built World tools (Yardi, Procore) and consumption-based pricing"
+        "Design Systems",
+        "WebGL & Creative Coding",
+        "Brand Identity",
+        "End-to-end Development"
       ],
       traction:
-        "Active platform: all three agents live with pulse indicators; hundreds of operators claiming 20+ hours/week saved.",
+        "Established boutique studio. 3 featured portfolio projects dated 2025. Active client work.",
       insights:
-        "Vertical-first 'no-config' automation beats generic no-code canvases for non-technical operators; outcome metrics on cards (leads/docs/upsells) reinforce ROI."
+        "Differentiates through tech-forward branding that mirrors developer culture. Occupies the niche between standard web agencies and specialized interactive studios."
     }
   },
   {
@@ -202,6 +201,62 @@ const projects: Project[] = [
         "Waitlist active. Pricing structure established ($29/mo premium).",
       insights:
         "The '10 years' lifecycle tracking example quantifies value beautifully. Sinking fund features move this from a simple logbook app to a financial planning tool."
+    }
+  },
+  {
+    id: 17,
+    name: "DistroHQ",
+    url: "https://www.distrohq.xyz/",
+    status: "Live",
+    category: "Agency",
+    tags: ["Content", "Production", "SaaS"],
+    shortDesc:
+      "Headquarters for producing, packaging, and distributing high-performance content.",
+    stats: { rev: "$3k+/mo", clients: "Series-B+", type: "Service" },
+    sections: {
+      design:
+        "Minimalist, monochromatic aesthetic. Clean typography (Segoe UI) with repeating text patterns creates visual rhythm. Professional B2B look.",
+      valueProp:
+        "Solves content bottlenecks by offering full-stack production (Strategy + Production + Distribution). Bridges creator tools with B2B SaaS demands.",
+      audience: "Founders, SaaS Executives, Series-B+ companies.",
+      features: [
+        "Short-form video production",
+        "LinkedIn carousel creation",
+        "Product demo cinematography",
+        "Multi-channel distribution"
+      ],
+      traction:
+        "Active case studies (Apex +45k followers, Linear 2.5M views). Established pricing tiers ($3k-$6.5k/mo).",
+      insights:
+        "Positions as a growth partner, not just an editing service. The tiered subscription model for high-end content production creates predictable recurring revenue in a typically volatile agency model."
+    }
+  },
+  {
+    id: 18,
+    name: "LetsVibe",
+    url: "https://letsvibe.dev/",
+    status: "Live",
+    category: "Education",
+    tags: ["Education", "AI", "DevTools"],
+    shortDesc:
+      "Learn practical AI-native coding using Gemini 3.0, Google AI Studio, and Supabase.",
+    stats: { students: "2.4k+", stack: "Gemini", model: "Lifetime" },
+    sections: {
+      design:
+        "Dark-first with neon accents (Purple/Cyan). JetBrains Mono font usage and interactive canvas simulators create a 'hacker' atmosphere.",
+      valueProp:
+        "Forget syntax memorization. Learn to conduct the symphony of AI models. Positions developers as 'conductors' rather than writers.",
+      audience: "Aspiring developers, SaaS founders, Junior engineers.",
+      features: [
+        "Reasoning Models training",
+        "Multimodal agent building",
+        "Supabase backend integration",
+        "Cohort-based learning"
+      ],
+      traction:
+        "2,400+ builders enrolled. Active 2025 Cohort. Functional platform.",
+      insights:
+        "Directly challenges traditional bootcamps by skipping syntax fundamentals to focus on AI orchestration. The 'Lifetime Access' model is a smart cash-flow play for education products."
     }
   },
   {
@@ -588,6 +643,35 @@ const projects: Project[] = [
     }
   },
   {
+    id: 20,
+    name: "WorkfloAI",
+    url: "https://www.workfloai.com/",
+    status: "Live",
+    category: "AI Agents",
+    tags: ["AI Agents", "Automation", "SaaS", "No-Code"],
+    shortDesc: "Digital workforce of pre-built agents for Built World operators.",
+    stats: { leads: "2.3k handled", docs: "847 verified", upsell: "$12k" },
+    sections: {
+      design:
+        "Dark-mode with slate backgrounds and amber/gold accents. Gradient fixed nav, animated floating cards, three-column grids, and polished hover states create a premium SaaS feel. Amber rounded-rectangle icon with 3D box shape anchors the brand.",
+      valueProp:
+        "\"Your Digital Workforce is Ready to Clock In\"—no-config agents deployed instantly; solves non-technical gaps without webhooks or canvases.",
+      audience:
+        "Non-technical operators in construction, real estate, and hospitality who want outcomes (time saved, revenue) not tooling complexity.",
+      features: [
+        "Speed-to-Lead agent: <30s Zillow replies, NL chat, lead scoring, calendar booking, 2.3k leads handled",
+        "Digital Foreman agent: compliance doc chase, vision AI for PDFs/dates, auto filing, 847 docs verified",
+        "Concierge agent: WhatsApp upsell, instant FAQ, review sentiment, multilingual, $12k upsold",
+        "4-step Hire flow (Browse → Configure → Hire → Monitor) with live dashboards",
+        "Integrations for Built World tools (Yardi, Procore) and consumption-based pricing"
+      ],
+      traction:
+        "Active platform: all three agents live with pulse indicators; hundreds of operators claiming 20+ hours/week saved.",
+      insights:
+        "Vertical-first 'no-config' automation beats generic no-code canvases for non-technical operators; outcome metrics on cards (leads/docs/upsells) reinforce ROI."
+    }
+  },
+  {
     id: 16,
     name: "BlueBeetle",
     url: "https://www.bluebeetle.online/",
@@ -697,14 +781,24 @@ const projects: Project[] = [
   }
 ];
 
-const StatusBadge = ({ status }: { status: ProjectStatus }) => {
+const StatusBadge = ({
+  status,
+  isLight = false
+}: {
+  status: ProjectStatus;
+  isLight?: boolean;
+}) => {
   const isLive = status === "Live";
   return (
     <span
       className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider border ${
         isLive
-          ? "bg-emerald-500/15 text-emerald-300 border-emerald-400/30 shadow-[0_0_10px_rgba(16,185,129,0.35)]"
-          : "bg-amber-500/15 text-amber-300 border-amber-400/30"
+          ? isLight
+            ? "bg-emerald-100 text-emerald-700 border-emerald-200 shadow-none"
+            : "bg-emerald-500/15 text-emerald-300 border-emerald-400/30 shadow-[0_0_10px_rgba(16,185,129,0.35)]"
+          : isLight
+            ? "bg-amber-100 text-amber-700 border-amber-200 shadow-none"
+            : "bg-amber-500/15 text-amber-300 border-amber-400/30"
       }`}
     >
       {isLive ? (
@@ -735,7 +829,8 @@ const StatCard = ({
   icon: Icon,
   colorClass,
   borderColor,
-  surfaceClass
+  surfaceClass,
+  isLight
 }: {
   label: string;
   value: number | string;
@@ -743,6 +838,7 @@ const StatCard = ({
   colorClass?: string;
   borderColor?: string;
   surfaceClass?: string;
+  isLight: boolean;
 }) => (
   <div
     className={`${surfaceClass || "bg-zinc-900/50"} rounded-xl p-6 border ${
@@ -762,7 +858,13 @@ const StatCard = ({
           {value}
         </p>
       </div>
-      <div className="p-3 rounded-lg bg-zinc-950 border border-zinc-800 text-zinc-500 group-hover:text-white transition-colors">
+      <div
+        className={`p-3 rounded-lg border transition-colors ${
+          isLight
+            ? "bg-slate-100 border-slate-200 text-slate-500 group-hover:text-slate-700"
+            : "bg-zinc-950 border-zinc-800 text-zinc-500 group-hover:text-white"
+        }`}
+      >
         <Icon className="w-6 h-6" />
       </div>
     </div>
@@ -1149,6 +1251,7 @@ export default function IndiecornPortfolio() {
             surfaceClass={statCardSurface}
             borderColor={isLight ? "border-slate-200" : undefined}
             colorClass={isLight ? "text-slate-900" : undefined}
+            isLight={isLight}
           />
           <StatCard
             label="Live & Revenue"
@@ -1157,6 +1260,7 @@ export default function IndiecornPortfolio() {
             colorClass={isLight ? "text-emerald-600" : "text-emerald-400"}
             borderColor={isLight ? "border-emerald-100" : "border-emerald-500/10"}
             surfaceClass={statCardSurface}
+            isLight={isLight}
           />
           <StatCard
             label="Pipeline"
@@ -1165,6 +1269,7 @@ export default function IndiecornPortfolio() {
             colorClass={isLight ? "text-amber-600" : "text-amber-400"}
             borderColor={isLight ? "border-amber-100" : "border-amber-500/10"}
             surfaceClass={statCardSurface}
+            isLight={isLight}
           />
         </div>
 
@@ -1248,7 +1353,7 @@ export default function IndiecornPortfolio() {
                       return <ProjectIcon className="w-6 h-6" />;
                     })()}
                   </div>
-                  <StatusBadge status={project.status} />
+                  <StatusBadge status={project.status} isLight={isLight} />
                 </div>
 
                 <h3
