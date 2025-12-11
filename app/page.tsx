@@ -13,6 +13,8 @@ import {
   Layout,
   Maximize2,
   Search,
+  Sun,
+  Moon,
   ShieldCheck,
   Sparkles,
   Target,
@@ -21,6 +23,7 @@ import {
   X,
   Zap
 } from "lucide-react";
+import { Icon } from "@iconify/react";
 
 type ProjectStatus = "Live" | "Coming Soon";
 
@@ -94,6 +97,35 @@ const projects: Project[] = [
         "250+ active users, 4.9 avg rating, operational with real users.",
       insights:
         "The multi-app ecosystem strategy is distinctive. Instead of a super-app, it acts as a hub directing to specialized verticals. GatorEx's AI chatbot removes listing friction. Rydify's parent notification feature is a brilliant safety differentiator."
+    }
+  },
+  {
+    id: 20,
+    name: "WorkfloAI",
+    url: "https://www.workfloai.com/",
+    status: "Live",
+    category: "AI Agents",
+    tags: ["AI Agents", "Automation", "SaaS", "No-Code"],
+    shortDesc: "Digital workforce of pre-built agents for Built World operators.",
+    stats: { leads: "2.3k handled", docs: "847 verified", upsell: "$12k" },
+    sections: {
+      design:
+        "Dark-mode with slate backgrounds and amber/gold accents. Gradient fixed nav, animated floating cards, three-column grids, and polished hover states create a premium SaaS feel. Amber rounded-rectangle icon with 3D box shape anchors the brand.",
+      valueProp:
+        "\"Your Digital Workforce is Ready to Clock In\"—no-config agents deployed instantly; solves non-technical gaps without webhooks or canvases.",
+      audience:
+        "Non-technical operators in construction, real estate, and hospitality who want outcomes (time saved, revenue) not tooling complexity.",
+      features: [
+        "Speed-to-Lead agent: <30s Zillow replies, NL chat, lead scoring, calendar booking, 2.3k leads handled",
+        "Digital Foreman agent: compliance doc chase, vision AI for PDFs/dates, auto filing, 847 docs verified",
+        "Concierge agent: WhatsApp upsell, instant FAQ, review sentiment, multilingual, $12k upsold",
+        "4-step Hire flow (Browse → Configure → Hire → Monitor) with live dashboards",
+        "Integrations for Built World tools (Yardi, Procore) and consumption-based pricing"
+      ],
+      traction:
+        "Active platform: all three agents live with pulse indicators; hundreds of operators claiming 20+ hours/week saved.",
+      insights:
+        "Vertical-first 'no-config' automation beats generic no-code canvases for non-technical operators; outcome metrics on cards (leads/docs/upsells) reinforce ROI."
     }
   },
   {
@@ -631,34 +663,6 @@ const projects: Project[] = [
       insights:
         "Differentiates through tech-forward branding that mirrors developer culture. Occupies the niche between standard web agencies and specialized interactive studios."
     }
-  },
-  {
-    id: 20,
-    name: "OpenGig",
-    url: "https://opengig.net/",
-    status: "Coming Soon",
-    category: "Marketplace",
-    tags: ["Gig Economy", "B2B", "AI"],
-    shortDesc:
-      "Unified AI ecosystem for the gig economy. Stop searching, start building.",
-    stats: { status: "Beta", focus: "B2B", type: "Platform" },
-    sections: {
-      design:
-        "Modern, clean, tech-forward. Progress indicators and dark mode compatibility. Professional sans-serif typography.",
-      valueProp:
-        "Consolidate vetting, outreach, and management into one unified system. Replaces fragmented tools (LinkedIn, Trello, PayPal) with one ecosystem.",
-      audience: "Hiring managers, Recruiters, Agency owners.",
-      features: [
-        "Smart Resource Allocation",
-        "Automated Project Distribution",
-        "5-step Lifecycle Management",
-        "Roster Verification"
-      ],
-      traction:
-        "Early-stage beta. 'Active_Project_Beta' labels visible in mockups.",
-      insights:
-        "Horizontal integration strategy consolidating point solutions. Focuses on 'streamlining' existing workflows rather than just discovery, competing on efficiency rather than network size."
-    }
   }
 ];
 
@@ -668,8 +672,8 @@ const StatusBadge = ({ status }: { status: ProjectStatus }) => {
     <span
       className={`inline-flex items-center px-2 py-0.5 rounded text-[10px] uppercase font-bold tracking-wider border ${
         isLive
-          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.2)]"
-          : "bg-amber-500/10 text-amber-400 border-amber-500/20"
+          ? "bg-emerald-500/15 text-emerald-300 border-emerald-400/30 shadow-[0_0_10px_rgba(16,185,129,0.35)]"
+          : "bg-amber-500/15 text-amber-300 border-amber-400/30"
       }`}
     >
       {isLive ? (
@@ -683,7 +687,7 @@ const StatusBadge = ({ status }: { status: ProjectStatus }) => {
 };
 
 const CategoryBadge = ({ tag }: { tag: string }) => (
-  <span className="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium bg-zinc-950/50 border border-zinc-800 text-zinc-400 mr-1 mb-1 backdrop-blur-sm">
+  <span className="inline-flex items-center px-2 py-1 rounded-md text-[10px] font-medium bg-black/20 border border-zinc-700 text-zinc-200 mr-1 mb-1 backdrop-blur-sm">
     {tag}
   </span>
 );
@@ -919,6 +923,23 @@ export default function IndiecornPortfolio() {
   const [filter, setFilter] = useState<"All" | ProjectStatus>("All");
   const [search, setSearch] = useState("");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+
+  const isLight = theme === "light";
+
+  React.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = window.localStorage.getItem("theme");
+    if (stored === "light" || stored === "dark") {
+      setTheme(stored);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (typeof document === "undefined") return;
+    document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem("theme", theme);
+  }, [theme]);
 
   const filteredProjects = useMemo(() => {
     return projects.filter((p) => {
@@ -937,6 +958,27 @@ export default function IndiecornPortfolio() {
     comingSoon: projects.filter((p) => p.status === "Coming Soon").length
   };
 
+  const surfaceCard = isLight
+    ? "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+    : "bg-[#0f1117] rounded-2xl border border-zinc-800 hover:border-emerald-400/30 hover:bg-[#131726]";
+
+  const statCardSurface = isLight
+    ? "bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50"
+    : "bg-[#0f1117] border-zinc-800 hover:border-emerald-400/30 hover:bg-[#131726]";
+
+  const iconForProject = (project: Project) => {
+    if (project.name === "WorkfloAI") return "solar:cpu-bolt-bold-duotone";
+    if (project.category === "Marketplace") return "solar:cart-3-bold-duotone";
+    if (project.category === "AI Tools") return "solar:sparkles-bold-duotone";
+    if (project.category === "AI Agents") return "solar:cpu-bolt-bold-duotone";
+    if (project.category === "SaaS") return "solar:server-path-bold-duotone";
+    if (project.category === "Agency") return "solar:briefcase-bold-duotone";
+    if (project.category === "Education") return "solar:graduation-cap-2-bold-duotone";
+    if (project.category === "Fintech") return "solar:card-bold-duotone";
+    if (project.category === "Web3") return "solar:chain-bold-duotone";
+    return "solar:radar-2-bold-duotone";
+  };
+
   const now = useMemo(
     () =>
       new Intl.DateTimeFormat("en-US", {
@@ -948,8 +990,16 @@ export default function IndiecornPortfolio() {
   );
 
   return (
-    <div className="min-h-screen bg-zinc-950 font-sans text-zinc-100 selection:bg-emerald-500/30 selection:text-emerald-100">
-      <header className="bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800 sticky top-0 z-30">
+    <div
+      className={`min-h-screen font-sans selection:bg-emerald-500/30 selection:text-emerald-100 ${
+        isLight ? "bg-slate-50 text-slate-900" : "bg-[#0a0d14] text-zinc-100"
+      }`}
+    >
+      <header
+        className={`backdrop-blur-md sticky top-0 z-30 ${
+          isLight ? "bg-white/80 border-b border-slate-200" : "bg-[#0d111a]/90 border-b border-zinc-800"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className="w-10 h-10 bg-emerald-500 rounded-lg flex items-center justify-center shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_20px_rgba(16,185,129,0.5)] transition-shadow duration-300">
@@ -959,54 +1009,98 @@ export default function IndiecornPortfolio() {
             </div>
 
             <div className="flex flex-col justify-center">
-              <h1 className="text-lg font-bold tracking-tight text-white leading-none">
-                Indie<span className="text-emerald-500">corn</span>
+              <h1
+                className={`text-lg font-bold tracking-tight leading-none ${
+                  isLight ? "text-slate-900" : "text-white"
+                }`}
+              >
+                Indie<span className="text-emerald-400">corn</span>
               </h1>
-              <span className="text-xs text-zinc-500 font-medium tracking-wide">
+              <span
+                className={`text-xs font-medium tracking-wide ${
+                  isLight ? "text-slate-500" : "text-zinc-500"
+                }`}
+              >
                 Startup Studio Portfolio
               </span>
             </div>
           </div>
 
           <div className="flex items-center gap-6">
-            <div className="hidden md:flex items-center gap-2 text-xs font-medium text-zinc-500 bg-zinc-900 px-3 py-1.5 rounded-full border border-zinc-800">
+            <button
+              onClick={() => setTheme(isLight ? "dark" : "light")}
+              className={`flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-colors ${
+                isLight
+                  ? "bg-slate-100 border-slate-200 text-slate-700 hover:bg-slate-200"
+                  : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:bg-zinc-800"
+              }`}
+              aria-label="Toggle color mode"
+            >
+              {isLight ? (
+                <>
+                  <Moon className="w-4 h-4" />
+                  Dark
+                </>
+              ) : (
+                <>
+                  <Sun className="w-4 h-4" />
+                  Light
+                </>
+              )}
+            </button>
+
+            <div
+              className={`hidden md:flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border ${
+                isLight
+                  ? "text-emerald-700 bg-emerald-50 border-emerald-100"
+                  : "text-zinc-500 bg-zinc-900 border-zinc-800"
+              }`}
+            >
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
               <span>Systems Operational</span>
             </div>
-            <div className="text-xs font-mono text-zinc-600">{now}</div>
+            <div className={`text-xs font-mono ${isLight ? "text-slate-500" : "text-zinc-600"}`}>{now}</div>
           </div>
         </div>
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <StatCard label="Total Projects" value={stats.total} icon={Layers} />
+          <StatCard label="Total Projects" value={stats.total} icon={Layers} borderColor={isLight ? "border-slate-200" : undefined} colorClass={isLight ? "text-slate-900" : undefined} />
           <StatCard
             label="Live & Revenue"
             value={stats.live}
             icon={Activity}
-            colorClass="text-emerald-400"
-            borderColor="border-emerald-500/10"
+            colorClass={isLight ? "text-emerald-600" : "text-emerald-400"}
+            borderColor={isLight ? "border-emerald-100" : "border-emerald-500/10"}
           />
           <StatCard
             label="Pipeline"
             value={stats.comingSoon}
             icon={Clock}
-            colorClass="text-amber-400"
-            borderColor="border-amber-500/10"
+            colorClass={isLight ? "text-amber-600" : "text-amber-400"}
+            borderColor={isLight ? "border-amber-100" : "border-amber-500/10"}
           />
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10">
-          <div className="flex p-1 bg-zinc-900 rounded-xl border border-zinc-800 shadow-inner">
+          <div
+            className={`flex p-1 rounded-xl border shadow-inner ${
+              isLight ? "bg-white border-slate-200" : "bg-zinc-900 border-zinc-800"
+            }`}
+          >
             {["All", "Live", "Coming Soon"].map((f) => (
               <button
                 key={f}
                 onClick={() => setFilter(f as "All" | ProjectStatus)}
                 className={`px-5 py-2 text-xs font-bold uppercase tracking-wide rounded-lg transition-all ${
                   filter === f
-                    ? "bg-zinc-800 text-white shadow-sm border border-zinc-700/50"
-                    : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50"
+                    ? isLight
+                      ? "bg-slate-900 text-white shadow-sm border border-slate-800/50"
+                      : "bg-zinc-800 text-white shadow-sm border border-zinc-700/50"
+                    : isLight
+                      ? "text-slate-500 hover:text-slate-700 hover:bg-slate-100"
+                      : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50"
                 }`}
               >
                 {f}
@@ -1015,13 +1109,21 @@ export default function IndiecornPortfolio() {
           </div>
 
           <div className="relative w-full sm:w-72 group">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-600 group-focus-within:text-emerald-500 transition-colors" />
+            <Search
+              className={`absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors ${
+                isLight ? "text-slate-500 group-focus-within:text-emerald-600" : "text-zinc-600 group-focus-within:text-emerald-500"
+              }`}
+            />
             <input
               type="text"
               placeholder="Filter ventures..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-zinc-900 border border-zinc-800 rounded-xl text-sm text-white focus:outline-none focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/40 transition-all placeholder:text-zinc-600 shadow-sm"
+              className={`w-full pl-10 pr-4 py-2.5 border rounded-xl text-sm focus:outline-none focus:border-emerald-500/40 focus:ring-1 focus:ring-emerald-500/40 transition-all shadow-sm ${
+                isLight
+                  ? "bg-white border-slate-200 text-slate-900 placeholder:text-slate-400"
+                  : "bg-zinc-900 border-zinc-800 text-white placeholder:text-zinc-600"
+              }`}
             />
           </div>
         </div>
@@ -1031,31 +1133,55 @@ export default function IndiecornPortfolio() {
             <div
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="group relative bg-zinc-900/40 rounded-2xl border border-zinc-800/60 hover:border-emerald-500/20 hover:bg-zinc-900 shadow-sm transition-all duration-300 cursor-pointer flex flex-col h-full overflow-hidden hover:-translate-y-1"
+              className={`group relative rounded-2xl shadow-sm transition-all duration-300 cursor-pointer flex flex-col h-full overflow-hidden hover:-translate-y-1 ${
+                isLight
+                  ? "bg-white border border-slate-200 hover:border-emerald-200 hover:bg-emerald-50/30"
+                  : "bg-zinc-900/40 border border-zinc-800/60 hover:border-emerald-500/20 hover:bg-zinc-900"
+              }`}
             >
-              <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <div
+                className={`absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${
+                  isLight ? "mix-blend-multiply" : ""
+                }`}
+              />
 
               <div className="p-6 flex-1 relative">
                 <div className="flex justify-between items-start mb-5">
                   <div
                     className={`w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold border shadow-inner ${
                       project.status === "Live"
-                        ? "bg-zinc-800 text-emerald-400 border-zinc-700 shadow-emerald-900/10"
-                        : "bg-zinc-950 text-zinc-600 border-zinc-800"
+                        ? isLight
+                          ? "bg-emerald-50 text-emerald-700 border-emerald-100"
+                          : "bg-emerald-500/10 text-emerald-300 border-emerald-400/40 shadow-[0_0_15px_rgba(16,185,129,0.35)]"
+                        : isLight
+                          ? "bg-slate-100 text-slate-500 border-slate-200"
+                          : "bg-[#111623] text-zinc-400 border-zinc-700"
                     }`}
                   >
-                    {project.name.charAt(0)}
+                    <Icon icon={iconForProject(project)} className="w-6 h-6" />
                   </div>
                   <StatusBadge status={project.status} />
                 </div>
 
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors tracking-tight">
+                <h3
+                  className={`text-xl font-bold mb-2 tracking-tight transition-colors ${
+                    isLight ? "text-slate-900 group-hover:text-emerald-700" : "text-white group-hover:text-emerald-300"
+                  }`}
+                >
                   {project.name}
                 </h3>
-                <p className="text-[10px] uppercase tracking-widest text-zinc-500 mb-4 font-semibold">
+                <p
+                  className={`text-[10px] uppercase tracking-widest mb-4 font-semibold ${
+                    isLight ? "text-slate-500" : "text-zinc-500"
+                  }`}
+                >
                   {project.category}
                 </p>
-                <p className="text-sm text-zinc-400 line-clamp-3 mb-4 leading-relaxed font-light">
+                <p
+                  className={`text-sm line-clamp-3 mb-4 leading-relaxed font-light ${
+                    isLight ? "text-slate-700" : "text-zinc-400"
+                  }`}
+                >
                   {project.shortDesc}
                 </p>
 
@@ -1071,11 +1197,25 @@ export default function IndiecornPortfolio() {
                 </div>
               </div>
 
-              <div className="px-6 py-4 border-t border-zinc-800/50 bg-zinc-900/30 flex justify-between items-center group-hover:bg-zinc-800/50 transition-colors">
-                <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider flex items-center group-hover:text-zinc-300 transition-colors">
+              <div
+                className={`px-6 py-4 border-t flex justify-between items-center transition-colors ${
+                  isLight
+                    ? "border-slate-200 bg-emerald-50/40 group-hover:bg-emerald-50"
+                    : "border-zinc-800/50 bg-zinc-900/30 group-hover:bg-zinc-800/50"
+                }`}
+              >
+                <span
+                  className={`text-[10px] font-bold uppercase tracking-wider flex items-center transition-colors ${
+                    isLight ? "text-slate-600 group-hover:text-slate-700" : "text-zinc-500 group-hover:text-zinc-300"
+                  }`}
+                >
                   <Maximize2 className="w-3 h-3 mr-1.5" /> View Analysis
                 </span>
-                <span className="text-emerald-500 opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 duration-300 text-sm">
+                <span
+                  className={`opacity-0 group-hover:opacity-100 transition-all transform group-hover:translate-x-1 duration-300 text-sm ${
+                    isLight ? "text-emerald-600" : "text-emerald-500"
+                  }`}
+                >
                   →
                 </span>
               </div>
@@ -1083,8 +1223,16 @@ export default function IndiecornPortfolio() {
           ))}
         </div>
 
-        <div className="mt-20 bg-zinc-900 rounded-2xl border border-zinc-800 shadow-sm overflow-hidden">
-          <div className="p-8 border-b border-zinc-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div
+          className={`mt-20 rounded-2xl border shadow-sm overflow-hidden ${
+            isLight ? "bg-white border-slate-200" : "bg-zinc-900 border-zinc-800"
+          }`}
+        >
+          <div
+            className={`p-8 border-b flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 ${
+              isLight ? "border-slate-200" : "border-zinc-800"
+            }`}
+          >
             <div>
               <h2 className="text-xl font-bold text-white flex items-center tracking-tight">
                 <BarChart3 className="w-5 h-5 mr-3 text-emerald-500" />
@@ -1097,7 +1245,11 @@ export default function IndiecornPortfolio() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            <div className="p-8 border-b lg:border-b-0 lg:border-r border-zinc-800">
+            <div
+              className={`p-8 border-b lg:border-b-0 lg:border-r ${
+                isLight ? "border-slate-200" : "border-zinc-800"
+              }`}
+            >
               <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-8 flex items-center">
                 <ShieldCheck className="w-4 h-4 mr-2 text-emerald-500" />{" "}
                 Strategic Moats
@@ -1153,7 +1305,7 @@ export default function IndiecornPortfolio() {
               </ul>
             </div>
 
-            <div className="p-8 bg-zinc-900/30">
+            <div className={`p-8 ${isLight ? "bg-emerald-50/40" : "bg-zinc-900/30"}`}>
               <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-8 flex items-center">
                 <Globe className="w-4 h-4 mr-2 text-indigo-400" /> Market
                 Distribution
