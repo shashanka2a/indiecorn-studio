@@ -6,24 +6,38 @@ import {
   Activity,
   ArrowUpRight,
   BarChart3,
+  BedDouble,
   Clock,
   Cpu,
+  CircuitBoard,
   ExternalLink,
   Filter,
+  Film,
   GraduationCap,
   Globe,
+  HeartHandshake,
+  Home,
   Layers,
+  Leaf,
   Layout,
+  LineChart,
   Maximize2,
+  Megaphone,
   Network,
+  Palette,
   Radar,
+  Rocket,
   Search,
+  Shirt,
+  Sparkle,
   Sun,
   Moon,
   Briefcase,
   CreditCard,
   Server,
   ShoppingCart,
+  Presentation,
+  Trophy,
   ShieldCheck,
   Sparkles,
   Target,
@@ -758,19 +772,43 @@ const StatCard = ({
 const InsightCard = ({
   title,
   value,
-  subtext
+  subtext,
+  isLight
 }: {
   title: string;
   value: string;
   subtext?: string;
+  isLight: boolean;
 }) => (
-  <div className="p-5 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-colors">
-    <h4 className="text-[10px] font-bold uppercase tracking-widest text-emerald-500 mb-2">
+  <div
+    className={`p-5 rounded-lg border transition-colors ${
+      isLight
+        ? "bg-slate-50 border-slate-200 hover:border-slate-300"
+        : "bg-zinc-900/50 border-zinc-800 hover:border-zinc-700"
+    }`}
+  >
+    <h4
+      className={`text-[10px] font-bold uppercase tracking-widest mb-2 ${
+        isLight ? "text-emerald-700" : "text-emerald-500"
+      }`}
+    >
       {title}
     </h4>
-    <p className="text-xl font-bold text-white tracking-tight">{value}</p>
+    <p
+      className={`text-xl font-bold tracking-tight ${
+        isLight ? "text-slate-900" : "text-white"
+      }`}
+    >
+      {value}
+    </p>
     {subtext && (
-      <p className="text-xs text-zinc-500 mt-1 font-medium">{subtext}</p>
+      <p
+        className={`text-xs mt-1 font-medium ${
+          isLight ? "text-slate-500" : "text-zinc-500"
+        }`}
+      >
+        {subtext}
+      </p>
     )}
   </div>
 );
@@ -992,27 +1030,29 @@ export default function IndiecornPortfolio() {
     : "bg-[#0f1117] border-zinc-800 hover:border-emerald-400/30 hover:bg-[#131726]";
 
   const iconForProject = (project: Project): LucideIcon => {
-    if (project.name === "WorkfloAI") return Cpu;
-    switch (project.category) {
-      case "Marketplace":
-        return ShoppingCart;
-      case "AI Tools":
-        return Sparkles;
-      case "AI Agents":
-        return Cpu;
-      case "SaaS":
-        return Server;
-      case "Agency":
-        return Briefcase;
-      case "Education":
-        return GraduationCap;
-      case "Fintech":
-        return CreditCard;
-      case "Web3":
-        return Network;
-      default:
-        return Radar;
-    }
+    const map: Record<string, LucideIcon> = {
+      Kampus: ShoppingCart,
+      WorkfloAI: Cpu,
+      MenuOS: Server,
+      Homevisor: Home,
+      ShaadiVerse: HeartHandshake,
+      Grogate: Leaf,
+      Threadz: Shirt,
+      Layr: Layers,
+      Markit: Megaphone,
+      Hackr: Trophy,
+      Payd: CreditCard,
+      StayLinq: BedDouble,
+      Momint: Sparkle,
+      WhatIfStudio: Film,
+      "Aura Art": Palette,
+      OmniTrix: CircuitBoard,
+      BlueBeetle: LineChart,
+      LetsVibe: GraduationCap,
+      Liftoff: Rocket,
+      DistroHQ: Presentation
+    };
+    return map[project.name] || Radar;
   };
 
   const now = useMemo(
@@ -1308,20 +1348,35 @@ export default function IndiecornPortfolio() {
                 isLight ? "border-slate-200" : "border-zinc-800"
               }`}
             >
-              <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-8 flex items-center">
-                <ShieldCheck className="w-4 h-4 mr-2 text-emerald-500" />{" "}
-                Strategic Moats
+              <h3
+                className={`text-xs font-bold uppercase tracking-widest mb-8 flex items-center ${
+                  isLight ? "text-slate-500" : "text-zinc-500"
+                }`}
+              >
+                <ShieldCheck className="w-4 h-4 mr-2 text-emerald-500" /> Strategic Moats
               </h3>
               <ul className="space-y-8">
                 <li className="flex gap-5">
-                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-zinc-950 border border-zinc-800 flex items-center justify-center font-bold text-sm text-emerald-500 shadow-sm">
+                  <span
+                    className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-emerald-500 shadow-sm border ${
+                      isLight ? "bg-emerald-50 border-emerald-200" : "bg-zinc-950 border-zinc-800"
+                    }`}
+                  >
                     01
                   </span>
                   <div>
-                    <h4 className="font-bold text-base text-white mb-1">
+                    <h4
+                      className={`font-bold text-base mb-1 ${
+                        isLight ? "text-slate-900" : "text-white"
+                      }`}
+                    >
                       Ecosystem Bundling
                     </h4>
-                    <p className="text-sm text-zinc-400 leading-relaxed">
+                    <p
+                      className={`text-sm leading-relaxed ${
+                        isLight ? "text-slate-600" : "text-zinc-400"
+                      }`}
+                    >
                       Projects like{" "}
                       <span className="text-emerald-400 font-medium">
                         Markit
@@ -1336,14 +1391,26 @@ export default function IndiecornPortfolio() {
                   </div>
                 </li>
                 <li className="flex gap-5">
-                  <span className="flex-shrink-0 w-10 h-10 rounded-full bg-zinc-950 border border-zinc-800 flex items-center justify-center font-bold text-sm text-emerald-500 shadow-sm">
+                  <span
+                    className={`flex-shrink-0 w-10 h-10 rounded-full flex items-center justify-center font-bold text-sm text-emerald-500 shadow-sm border ${
+                      isLight ? "bg-emerald-50 border-emerald-200" : "bg-zinc-950 border-zinc-800"
+                    }`}
+                  >
                     02
                   </span>
                   <div>
-                    <h4 className="font-bold text-base text-white mb-1">
+                    <h4
+                      className={`font-bold text-base mb-1 ${
+                        isLight ? "text-slate-900" : "text-white"
+                      }`}
+                    >
                       Hyper-Verticalization
                     </h4>
-                    <p className="text-sm text-zinc-400 leading-relaxed">
+                    <p
+                      className={`text-sm leading-relaxed ${
+                        isLight ? "text-slate-600" : "text-zinc-400"
+                      }`}
+                    >
                       Attacking deep niches:{" "}
                       <span className="text-emerald-400 font-medium">
                         Kampus
@@ -1364,33 +1431,51 @@ export default function IndiecornPortfolio() {
             </div>
 
             <div className={`p-8 ${isLight ? "bg-emerald-50/40" : "bg-zinc-900/30"}`}>
-              <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-widest mb-8 flex items-center">
-                <Globe className="w-4 h-4 mr-2 text-indigo-400" /> Market
-                Distribution
+              <h3
+                className={`text-xs font-bold uppercase tracking-widest mb-8 flex items-center ${
+                  isLight ? "text-slate-500" : "text-zinc-500"
+                }`}
+              >
+                <Globe className="w-4 h-4 mr-2 text-indigo-400" /> Market Distribution
               </h3>
               <div className="grid grid-cols-2 gap-4 mb-8">
-                <InsightCard title="B2B SaaS" value="25%" subtext="4 Active Ventures" />
+                <InsightCard title="B2B SaaS" value="25%" subtext="4 Active Ventures" isLight={isLight} />
                 <InsightCard
                   title="Consumer"
                   value="31%"
                   subtext="5 Active Ventures"
+                  isLight={isLight}
                 />
                 <InsightCard
                   title="Creator Tools"
                   value="25%"
                   subtext="4 Active Ventures"
+                  isLight={isLight}
                 />
                 <InsightCard
                   title="Fintech/Web3"
                   value="19%"
                   subtext="3 Active Ventures"
+                  isLight={isLight}
                 />
               </div>
-              <div className="bg-amber-900/10 border border-amber-500/10 p-5 rounded-xl">
-                <h4 className="text-amber-500 font-bold text-[10px] uppercase tracking-wider mb-2 flex items-center">
+              <div
+                className={`p-5 rounded-xl border ${
+                  isLight ? "bg-amber-50 border-amber-200" : "bg-amber-900/10 border-amber-500/10"
+                }`}
+              >
+                <h4
+                  className={`font-bold text-[10px] uppercase tracking-wider mb-2 flex items-center ${
+                    isLight ? "text-amber-700" : "text-amber-500"
+                  }`}
+                >
                   <Target className="w-3 h-3 mr-1.5" /> Risk Assessment
                 </h4>
-                <p className="text-sm text-amber-100/60 leading-relaxed">
+                <p
+                  className={`text-sm leading-relaxed ${
+                    isLight ? "text-amber-800" : "text-amber-100/80"
+                  }`}
+                >
                   Heavy reliance on "Coming Soon" projects (75% of portfolio).
                   Market timing for Web3 projects faces headwinds.
                   Recommendation: Accelerate Grogate pilot to diversify live
