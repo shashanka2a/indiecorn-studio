@@ -290,30 +290,31 @@ const projects: Project[] = [
   },
   {
     id: 8,
-    name: "ShaadiVerse",
-    url: "https://shaadiverse.app/",
+    name: "WedNest",
+    url: "https://www.wednest.in/",
     status: "Live",
     category: "Marketplace",
     tags: ["Services", "Booking", "Wedding"],
-    shortDesc: "Transparent wedding vendor booking for Tier-2/3 India.",
-    stats: { vendors: "10k+", region: "Telangana", trust: "Escrow" },
+    shortDesc: "Your Dream Wedding, Within Budget. #1 Marketplace for Telangana Tier 2 & 3 Cities.",
+    stats: { vendors: "10k+", region: "Telangana", trust: "Verified" },
     sections: {
       design:
         "Clean, modern, image-heavy. High-quality photography establishes credibility. Functional but slightly template-like.",
       valueProp:
-        "Transparent pricing, verified vendors, and Escrow payment protection.",
+        "Transparent pricing, verified vendors, and AI-powered budget planning. Making dream weddings accessible in Tier-2/3 cities.",
       audience:
-        "Couples in Tier-2/3 Indian cities (Telangana region). Budget-conscious, middle-income.",
+        "Couples in Tier-2/3 Indian cities (Telangana region: Nizamabad, Warangal, Karimnagar, Kamareddy). Budget-conscious, middle-income.",
       features: [
         "10,000+ verified vendors",
-        "Escrow payment protection",
+        "AI Wedding Planner for budget breakdown",
         "Transparent package rates",
-        "Physical vendor verification"
+        "Physical vendor verification",
+        "City-specific vendor listings"
       ],
       traction:
-        "10,000+ verified vendors claimed. Active customer testimonials.",
+        "10,000+ verified vendors claimed. Active customer testimonials. Serving Nizamabad, Warangal, Karimnagar, and Kamareddy.",
       insights:
-        "Regional focus (Tier-2/3) is a strategic moat against national giants like WedMeGood. The Escrow mechanism solves the massive 'trust gap' in the Indian unorganized wedding sector."
+        "Regional focus (Tier-2/3) is a strategic moat against national giants like WedMeGood. The AI Wedding Planner feature differentiates by helping couples plan within realistic budgets. The verified vendor network builds trust in underserved markets."
     }
   },
   {
@@ -1053,7 +1054,7 @@ export default function IndiecornPortfolio() {
       WorkfloAI: Cpu,
       MenuOS: Server,
       Homevisor: Home,
-      ShaadiVerse: HeartHandshake,
+      WedNest: HeartHandshake,
       Grogate: Leaf,
       Threadz: Shirt,
       Layr: Layers,
@@ -1438,7 +1439,7 @@ export default function IndiecornPortfolio() {
                       </span>{" "}
                       (one university),{" "}
                       <span className="text-emerald-400 font-medium">
-                        ShaadiVerse
+                        WedNest
                       </span>{" "}
                       (Tier-2 weddings), and{" "}
                       <span className="text-emerald-400 font-medium">
